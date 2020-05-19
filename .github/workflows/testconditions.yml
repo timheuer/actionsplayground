@@ -7,7 +7,10 @@ on:
 
 jobs:
   build_and_deploy_job:
-    if: ${{ secrets.SOME_SUPER_SECRET != "" }}
+    env:
+      something: ${{ secrets.SOME_SUPER_SECRET }}
+
+    if: ${{ env.something != '' }}
     runs-on: ubuntu-latest
     name: Build
     steps:
