@@ -7,16 +7,13 @@ on:
 
 jobs:
   build_and_deploy_job:
-    env:
-      something: ${{ secrets.SOME_SUPER_SECRET }}
-
-    if: ${{ env.something != '' }}
     runs-on: ubuntu-latest
     name: Build
     steps:
     - uses: actions/checkout@v2
     
     - name: Setup .NET SDK
+      if: ${{ secrets.SOME_SUPER_SECRET != '' }}
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.201
